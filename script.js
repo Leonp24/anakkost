@@ -83,16 +83,20 @@ function bukaUploadModal(nama, tanggal, kode) {
 // Simulasi kirim form upload
 let currentRowButton = null; // Untuk simpan tombol bayar yang terakhir diklik
 
-// Fungsi buka modal upload
 function bukaUploadModal(nama, tanggal, kode, btn) {
-    currentRowButton = btn; // simpan referensi tombol yang diklik
-    document.getElementById("uploadNamaKost").textContent = nama;
-    document.getElementById("uploadTanggal").textContent = tanggal;
-    document.getElementById("uploadKode").textContent = kode;
+    currentRowButton = btn;
+
+    // document.getElementById("uploadNamaKost").textContent = nama;
+    // document.getElementById("uploadTanggal").textContent = tanggal;
+    // document.getElementById("uploadKode").textContent = kode;
+
+    // contoh nominal tetap, atau nanti bisa tarik dari data
+    document.getElementById("uploadNominal").textContent = "Rp 750.000";
 
     const modal = new bootstrap.Modal(document.getElementById('uploadModal'));
     modal.show();
 }
+
 
 
 // Event submit form upload
