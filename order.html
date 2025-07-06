@@ -66,7 +66,7 @@
                         <td>Jl. Contoh No. 3, Jakarta</td>
                         <td><span class="badge bg-danger">Dibatalkan</span></td>
                         <td>
-                            <button class="btn btn-primer btn-sm">Lihat Detail</button>
+                            <button class="btn btn-secondary btn-sm" disabled>Dibatalkan</button>
                         </td>
                     </tr>
                     <tr>
@@ -76,9 +76,21 @@
                         <td>Jl. Contoh No. 2, Jakarta</td>
                         <td><span class="badge bg-warning">Belum Bayar</span></td>
                         <td>
-                            <button class="btn btn-primer btn-sm">Lihat Detail</button>
-                            <button class="btn btn-success btn-sm">Bayar</button>
-                            <button class="btn btn-danger btn-sm">Batalkan</button>
+                            <button class="btn btn-primer btn-sm"
+                                onclick="lihatDetail('Kost B', '03 Jan 2024', 'Jl. Contoh No. 2, Jakarta', 'Belum Bayar', 'KOST-0911')">
+                                Lihat Detail
+                            </button>
+
+                            <button class="btn btn-success btn-sm"
+                                onclick="bukaUploadModal('Kost B', '03 Jan 2024', 'KOST-0911', this)">
+                                Bayar
+                            </button>
+
+
+                            <button class="btn btn-danger btn-sm" onclick="batalkanPesanan(this)">
+                                Batalkan
+                            </button>
+
                         </td>
                     </tr>
                     <tr>
@@ -88,7 +100,10 @@
                         <td>Jl. Contoh No. 1, Jakarta</td>
                         <td><span class="badge bg-success">Disetujui</span></td>
                         <td>
-                            <button class="btn btn-primer btn-sm">Lihat Detail</button>
+                            <button class="btn btn-primer btn-sm"
+                                onclick="lihatDetail('Kost A', '01 Jan 2024', 'Jl. Contoh No. 3, Jakarta', 'Disetujui', 'KOST-0235')">
+                                Lihat Detail
+                            </button>
                         </td>
                     </tr>
                 </tbody>
@@ -96,6 +111,57 @@
         </div>
     </section>
     <!-- order -->
+
+    <!-- modal detail -->
+    <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="detailModalLabel">Detail Pesanan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Nama Kost:</strong> <span id="modalNamaKost"></span></p>
+                    <p><strong>Tanggal Check-in:</strong> <span id="modalTanggal"></span></p>
+                    <p><strong>Alamat:</strong> <span id="modalAlamat"></span></p>
+                    <p><strong>Status:</strong> <span id="modalStatus"></span></p>
+                    <p><strong>Kode Booking:</strong> <span id="modalKode" class="fw-bold text-primary"></span></p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <button class="btn btn-outline-primary" onclick="salinKode()">Salin Kode</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- modal detail -->
+
+    <!-- Modal Upload Bukti Pembayaran -->
+    <div class="modal fade" id="uploadModal" tabindex="-1" aria-labelledby="uploadModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="uploadModalLabel">Upload Bukti Pembayaran</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Nama Kost:</strong> <span id="uploadNamaKost"></span></p>
+                    <p><strong>Tanggal Check-in:</strong> <span id="uploadTanggal"></span></p>
+                    <p><strong>Kode Booking:</strong> <span id="uploadKode" class="fw-bold text-primary"></span></p>
+
+                    <form id="uploadForm">
+                        <div class="mb-3">
+                            <label for="buktiBayar" class="form-label">Upload Bukti Bayar (jpg/png/pdf)</label>
+                            <input type="file" class="form-control" id="buktiBayar" name="buktiBayar"
+                                accept="image/*,.pdf" required>
+                        </div>
+                        <button type="submit" class="btn btn-primer w-100">Kirim Bukti Pembayaran</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Upload Bukti Pembayaran -->
 </body>
 
 </html>
